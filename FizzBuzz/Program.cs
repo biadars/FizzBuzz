@@ -29,23 +29,26 @@ namespace FizzBuzz
 
         static string SpecialCase(int x)
         {
-            string msg = "";
+            List<String> words = new List<string>();
             if (x % 3 == 0)
-                msg += "Fizz";
+                words.Add("Fizz");
             if (x % 5 == 0)
-                msg += "Buzz";
+                words.Add("Buzz");
             if (x % 7 == 0)
-                msg += "Bang";
+                words.Add("Bang");
             if (x % 11 == 0)
-                msg = "Bong";
+            {
+                words.Clear();
+                words.Add("Bong");
+            }
             if (x % 13 == 0)
             {
-                int index = msg.LastIndexOf("B");
+                int index = words.FindIndex(word => word[0] == 'B');
                 if (index < 0)
-                    index = msg.Length;
-                msg = msg.Insert(index, "Fezz");
+                    index = words.Count;
+                words.Insert(index, "Fezz");
             }
-            return msg;
+            return string.Concat(words);
         }
     }
 }
