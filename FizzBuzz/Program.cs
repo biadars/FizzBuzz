@@ -11,25 +11,54 @@ namespace FizzBuzz
         static void Main(string[] args)
         {
             int n;
+            Dictionary<String, bool> options = new Dictionary<string, bool>();
+            List<String> rules = new List<String>(new string[] { "fizz", "buzz", "bang", "bong", "fezz", "reverse"});
+            for (var i = 0; i < rules.Count; i++)
+                options[rules[i]] = false;
+
             Console.WriteLine("What number should the program count up to?");
-            if (!Int32.TryParse(Console.ReadLine(), out n))
+            if (!Int32.TryParse(Console.ReadLine(), out n)) {
                 Console.WriteLine("Input must be an integer.");
+                Console.ReadLine();
+                return;
+            }
+
+            Console.WriteLine("Which rules should be applied? (options: fizz, buzz, bang, bong, fezz, reverse)");
+            String[] arguments = Console.ReadLine().Split(' ');
+            for (int i = 0; i < arguments.Length; i++)
+            {
+                if (rules.Contains(arguments[i]))
+                    options[arguments[i]] = true;
+                else
+                {
+                    Console.WriteLine("Invalid rule: " + arguments[i]);
+                    Console.ReadLine();
+                    return;
+                }
+            }
+            
             for (int i = 1; i <= n; i++)
             {
-                Console.WriteLine(ComputeOutput(i));
+                Console.WriteLine(ComputeOutput(i, options));
             }
             Console.ReadLine();
         }
 
-        static string ComputeOutput(int x)
+        static string ComputeOutput(int x, Dictionary<String, bool> options)
         {
             List<String> words = new List<string>();
-            ApplyFizz(words, x);
-            ApplyBuzz(words, x);
-            ApplyBang(words, x);
-            ApplyBong(words, x);
-            ApplyFezz(words, x);
-            ApplyReverse(words, x);
+            if (options["fizz"])
+                ApplyFizz(words, x);
+            if (options["buzz"])
+                ApplyBuzz(words, x);
+            if (options["bang"])
+                ApplyBang(words, x);
+            if (options["bong"])
+                ApplyBong(words, x);
+            if (options["fezz"])
+                ApplyFezz(words, x);
+            if (options["reverse"])
+                ApplyReverse(words, x);
             if (words.Count == 0)
                 words.Add(x.ToString());
             return string.Concat(words);
