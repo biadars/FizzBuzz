@@ -10,7 +10,10 @@ namespace FizzBuzz
     {
         static void Main(string[] args)
         {
-            for (int i = 1; i <= 255; i++)
+            int n;
+            Console.WriteLine("What number should the program count up to?");
+            n = Int32.Parse(Console.ReadLine());
+            for (int i = 1; i <= n; i++)
             {
                 Console.WriteLine(ComputeOutput(i));
             }
