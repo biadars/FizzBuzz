@@ -12,7 +12,7 @@ namespace FizzBuzz
         {
             for (int i = 1; i <= 100; i++)
             {
-                if (i % 3 != 0 && i % 5 != 0)
+                if (i % 3 != 0 && i % 5 != 0 && i % 7 != 0)
                 {
                     WriteNonSpecial(i);
                     continue;
@@ -32,6 +32,8 @@ namespace FizzBuzz
                 Console.Write("Fizz");
             if (x % 5 == 0)
                 Console.Write("Buzz");
+            if (x % 7 == 0)
+                Console.Write("Bang");
             Console.Write("\n");
         }
     }
