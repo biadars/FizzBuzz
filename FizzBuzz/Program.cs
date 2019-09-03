@@ -12,29 +12,33 @@ namespace FizzBuzz
         {
             for (int i = 1; i <= 100; i++)
             {
-                if (i % 3 != 0 && i % 5 != 0 && i % 7 != 0)
+                if (i % 3 != 0 && i % 5 != 0 && i % 7 != 0
+                    && i % 11 != 0)
                 {
-                    WriteNonSpecial(i);
+                    Console.WriteLine(NonSpecial(i));
                     continue;
                 }
-                WriteSpecialCase(i);
+                Console.WriteLine(SpecialCase(i));
             }
             Console.ReadLine();
         }
-        static void WriteNonSpecial(int x)
+        static int NonSpecial(int x)
         {
-            Console.WriteLine(x);
+            return x;
         }
 
-        static void WriteSpecialCase(int x)
+        static string SpecialCase(int x)
         {
+            string msg = "";
+            if (x % 11 == 0)
+                return "Bong";
             if (x % 3 == 0)
-                Console.Write("Fizz");
+                msg += "Fizz";
             if (x % 5 == 0)
-                Console.Write("Buzz");
+                msg += "Buzz";
             if (x % 7 == 0)
-                Console.Write("Bang");
-            Console.Write("\n");
+                msg += "Bang";
+            return msg;
         }
     }
 }
